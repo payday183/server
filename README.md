@@ -9,6 +9,7 @@ This repository contains only the VPN node files:
 - `init-x3ui.sh` initializes panel credentials and creates the VLESS inbound.
 - `xray-routing-policy.json` contains the optional Xray abuse-routing policy.
 - `nftables-abuse-guard.nft` contains optional host firewall rules.
+- `miloshvpn-abuse-guard.service` applies the firewall guard on boot without flushing Docker rules.
 
 ## Start
 
@@ -49,4 +50,14 @@ docker compose down
 docker compose up -d
 ```
 
-`nftables-abuse-guard.nft` is not applied automatically. Review it before applying host firewall rules.
+## Abuse Guard
+
+The guard blocks common BitTorrent and Tor proxy ports without touching the VPN panel or VLESS ports.
+
+```sh
+cp miloshvpn-abuse-guard.service /etc/systemd/system/
+systemctl daemon-reload
+systemctl enable --now miloshvpn-abuse-guard.service
+```
+
+Do not enable the default `nftables.service` unless `/etc/nftables.conf` has been reviewed; the distro default may flush Docker rules.

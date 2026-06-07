@@ -1,0 +1,12 @@
+[Unit]
+Description=Apply MiloshVPN nftables abuse guard
+After=docker.service network-online.target
+Wants=docker.service network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/nft -f /root/x3ui-node/nftables-abuse-guard.nft
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

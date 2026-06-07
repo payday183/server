@@ -1,10 +1,11 @@
+destroy table inet miloshvpn_abuse_guard
+
 table inet miloshvpn_abuse_guard {
   set blocked_tcp_ports {
     type inet_service
     flags interval
     elements = {
       6881-6999,
-      6969,
       8118,
       9050-9051,
       9150-9151
@@ -16,7 +17,6 @@ table inet miloshvpn_abuse_guard {
     flags interval
     elements = {
       6881-6999,
-      6969,
       33434-33534
     }
   }
