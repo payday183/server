@@ -26,7 +26,7 @@ Panel:
 http://SERVER_IP:2053/
 ```
 
-Backend settings:
+Legacy backend settings:
 
 ```env
 X3UI_MODE=live
@@ -36,6 +36,18 @@ X3UI_INBOUND_ID=1
 VLESS_PUBLIC_HOST=SERVER_IP
 VLESS_PUBLIC_PORT=8443
 VLESS_QUERY=type=tcp&security=none
+```
+
+Reality backend settings:
+
+```env
+X3UI_MODE=live
+X3UI_USERNAME=<from .env>
+X3UI_PASSWORD=<from .env>
+X3UI_INBOUND_ID=<X3UI_REALITY_INBOUND_ID from .env>
+VLESS_PUBLIC_HOST=SERVER_IP
+VLESS_PUBLIC_PORT=<X3UI_REALITY_PORT from .env>
+VLESS_QUERY=<X3UI_REALITY_VLESS_QUERY from .env>
 ```
 
 Keep `X3UI_USERNAME` and `X3UI_PASSWORD` in the backend node settings in sync with this server's local `.env`.
